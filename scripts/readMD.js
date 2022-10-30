@@ -21,6 +21,7 @@ const readMD = async (list) => {
             }
             return acc;
         }, {})
+        console.log(obj);
         mds.push({
             ...obj,
             type: obj.type || defaultType,
