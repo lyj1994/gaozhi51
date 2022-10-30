@@ -2,7 +2,7 @@ const { readFileDir } = require('./travel');
 const fse = require('fs-extra');
 const path = require('path');
 
-const pattern = /^---((.|\r\n)*?)---/g;
+const pattern = /^---((.|[\r\n])*?)---/g;
 const kvPattern = /(\w+):/;
 const imgPattern = /\(\.(.*?\.(jpg|png))\)/g;
 
