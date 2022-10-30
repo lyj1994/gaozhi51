@@ -1,0 +1,29 @@
+.content-width {
+    @apply max-w-5xl w-4/5;
+}
+
+h1 {
+    @apply text-3xl my-5;
+}
+h2 {
+    @apply text-2xl my-4;
+}
+h3 {
+    @apply text-xl my-3;
+}
+h4 {
+    @apply text-lg my-2;
+}
+h5 {
+    @apply text-base my-2;
+}
+h6 {
+    @apply text-sm my-1;
+}
+h7 {
+    @apply text-xs my-1;
+}
+
+.line-height-h-12 {
+    line-height: 48px;
+}
