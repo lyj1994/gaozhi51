@@ -12,7 +12,9 @@ const readMD = async (list) => {
         const pathArr = item.split(path.sep);
         const defaultType = pathArr[pathArr.length - 3];
         const res = await fse.readFile(item, 'utf8');
+        console.log("res: ", res);
         const $1 = pattern.exec(res)?.at(1) || '';
+        console.log("$1: ", $1);
         const obj = $1.split('\n').filter(Boolean).reduce((acc, curr) => {
             const key = kvPattern.exec(curr.trim())?.at(1);
             const value = curr?.trim().replace(kvPattern, '');
