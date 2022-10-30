@@ -2,12 +2,15 @@ const { readFileDir } = require('./travel');
 const fse = require('fs-extra');
 const path = require('path');
 
-const pattern = /^---((.|\r\n)*?)---/;
+const pattern = /^---((.|\r\n)*?)---/g;
 const kvPattern = /(\w+):/;
-const imgPattern = /
+const imgPattern = /\(\.(.*?\.(jpg|png))\)/g;
+
 const readMD = async (list) => {
     const mds = [];
     await Promise.all(list.filter(item => item.endsWith('.md')).map(async (item) => {
+        const pathArr = item.split(path.sep);
+        const defaultType = pathArr[pathArr.length - 3];
         const res = await fse.readFile(item, 'utf8');
         const $1 = pattern.exec(res)?.at(1) || '';
         const obj = $1.split('\n').filter(Boolean).reduce((acc, curr) => {
@@ -19,18 +22,17 @@ const readMD = async (list) => {
             return acc;
         }, {})
         mds.push({
-            content: res.replace(pattern, ''),
-            params: obj,
+            ...obj,
+            type: obj.type || defaultType,
+            _content: res.replace(pattern, '').replace(imgPattern, ($0, $1) => {
+                return `(../${obj.title}/${$1})`
+            }),
         });
     }));
 
     return mds;
 }
 
-async function main() {
-    const list = await readFileDir(path.join(__dirname, '../content'));
-    const mds = await readMD(list);
-    console.log(await readMD(list));
+module.exports = {
+    readMD
 }
-
-main();

@@ -1,10 +1,10 @@
 {
-  "name": "my-app",
+  "name": "gaozhi51",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node ./scripts/index.js && next build & next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -12,7 +12,8 @@
     "classnames": "^2.3.2",
     "next": "13.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-markdown": "^8.0.3"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",

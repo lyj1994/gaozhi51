@@ -1,4 +1,3 @@
-const { readFileDir } = require('./travel');
 const fse = require('fs-extra');
 const path = require('path');
 
@@ -12,9 +11,6 @@ const movePic = async (list) => {
         }));
 }
 
-async function main() {
-    const list = await readFileDir(path.join(__dirname, '../content'));
-    (await movePic(list));
+module.exports = {
+    movePic
 }
-
-main();
