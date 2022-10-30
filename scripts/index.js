@@ -10,6 +10,7 @@ async function main() {
     const mds = await readMD(list);
     await movePic(list);
     await fse.writeJSON(path.join(__dirname, '../content/all.json'), mds)
+    console.log(mds);
 }
 
 main();
